@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MvcCoreSeriesPersonajes.Models.Serie>
+
+@{
+    ViewData["Title"] = "Series";
+}
+
+<h1>Series</h1>
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                SERIES
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="nav-item">
+                    <a class="dropdown-item" asp-area="" asp-controller="Series" asp-action="Series">
+                        Series
+                    </a>
+                </li>
+
+                @foreach (var item in Model)
+                {
+                    <li class="nav-item">
+                        <a class="dropdown-item" asp-area="" asp-controller="Series" asp-action="DetailSerie" asp-route-idserie="@item.IdSerie">@Html.DisplayFor(modelItem => item.Nombre)</a>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puntuacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdSerie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imagen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Puntuacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    <a asp-controller="Series" asp-action="DetailSerie" asp-route-idserie="@item.IdSerie">Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
